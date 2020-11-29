@@ -1,0 +1,17 @@
+#!/bin/bash
+lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill # Kill all current services on port 80
+apt-get update
+apt-get install python3.8 -y
+apt-get install python3-pip -y
+apt-get install apache2 apache2-dev -y # Install apache webserver
+apt-get install portaudio19-dev -y
+pip3 install Flask
+pip3 install mod_wsgi # Install the webserver gateway interface module
+mod_wsgi-express module-config > /etc/apache2/mods-available/wsgi.load
+a2enmod wsgi
+service apache2 restart
+chmod -R 777 /var/www/
+[[ -d /var/www/FlaskApp ]] || mkdir /var/www/FlaskApp  # Create FlaskApp dir if it doesn't exist
+[[ -d /var/www/FlaskApp/FlaskApp ]] || mkdir /var/www/FlaskApp/FlaskApp
+[[ -d /etc/apache2/sites-available ]] || mkdir /etc/apache2/sites-available
+[[ -d /etc/apache2/sites-enabled ]] || mkdir /etc/apache2/sites-enabled

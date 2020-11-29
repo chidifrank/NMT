@@ -1,0 +1,13 @@
+#!/bin/bash
+a2ensite FlaskApp
+[[ -f Miniconda3-latest-Linux-x86_64.sh ]] || wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh -b -u # Install/Update miniconda without prompt
+source ~/.bashrc
+conda init
+conda create -n NMT
+conda activate NMT
+cd /var/www/FlaskApp/FlaskApp
+pip3 install -r requirements.txt # Install requirements
+chmod -R 777 /var/www/ # Grant easy access in recursive repositories (Bad for security, Needs revisiting)
+service apache2 reload

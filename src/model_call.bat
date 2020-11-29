@@ -1,0 +1,2 @@
+#!/bin/sh
+onmt_translate -model /var/www/FlaskApp/FlaskApp/model/model_step_100000.pt -src /var/www/FlaskApp/FlaskApp/data/speech/test.txt -output /var/www/FlaskApp/FlaskApp/data/speech/translation.txt -verbose
