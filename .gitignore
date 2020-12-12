@@ -4,3 +4,4 @@
 *.pyc
 *.pyc
 *.wav
+src/model/model_step_100000.pt
